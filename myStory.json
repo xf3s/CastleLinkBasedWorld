@@ -1,58 +1,178 @@
 {
-    "Title": "Campus Life on the West Side",
-    "Credits": "Created by Adam Smith (amsmith@ucsc.edu).",
-    "InitialLocation": "Kresge",
+    "Title": "Walled Garden",
+    "Credits": "",
+    "InitialLocation": "GuestBedroom",
     "Locations": {
-        "Kresge": {
-            "Body": "This is Kresge College, lots of nice trees.",
+        "GuestBedroom": {
+            "Body": "You awaken in a comfortable, sunlit bedroom. It's cozy, but impersonal. The only door leads out into a large hall.",
             "Choices": [
                 {
-                    "Text": "South",
-                    "Target": "Porter"
+                    "Text": "Go into the hall",
+                    "Target": "EntryHall"
                 }
             ]
         },
-        "Porter": {
-            "Body": "This is Porter College, the trees are nice here too.",
+        "EntryHall": {
+            "Body": "You are in a large entry hall. Doors lead to the library and the kitchen. A grand staircase goes up. The main doors to the outside are barred shut.",
             "Choices": [
                 {
-                    "Text": "North",
-                    "Target": "Kresge"
+                    "Text": "Go to the Library",
+                    "Target": "Library"
                 },
                 {
-                    "Text": "South",
-                    "Target": "Rachel Carson"
-                }
-            ]
-        },
-        "Rachel Carson": {
-            "Body": "Rachel Carson College, more sun and fewer trees.",
-            "Choices": [
-                {
-                    "Text": "North",
-                    "Target": "Porter"
+                    "Text": "Go to the Kitchen",
+                    "Target": "Kitchen"
                 },
                 {
-                    "Text": "South",
-                    "Target": "Oakes"
-                }
-            ]
-        },
-        "Oakes": {
-            "Body": "Oakes College, even the buildings have tree bark on them.",
-            "Choices": [
-                {
-                    "Text": "North",
-                    "Target": "Rachel Carson"
+                    "Text": "Go up the stairs",
+                    "Target": "Stairs"
                 },
                 {
-                    "Text": "South",
-                    "Target": "Beyond"
+                    "Text": "Go to the Courtyard Garden",
+                    "Target": "CourtyardGarden"
+                },
+                {
+                    "Text": "Return to the guest bedroom",
+                    "Target": "GuestBedroom"
                 }
             ]
         },
-        "Beyond": {
-            "Body": "Grass, don't forget to check for ticks!"
+        "Library": {
+            "Body": "The library is filled with books. A dusty tome on a lectern looks interesting.",
+            "Choices": [
+                {
+                    "Text": "Read the dusty tome",
+                    "Target": "Library",
+                    "gives": "OrnateKey"
+                },
+                {
+                    "Text": "Leave the library",
+                    "Target": "EntryHall"
+                }
+            ]
+        },
+        "Kitchen": {
+            "Body": "A simple kitchen. It seems recently used. Something metallic is being used as a paperweight for a recipe book.",
+            "Choices": [
+                {
+                    "Text": "Take the metal object",
+                    "Target": "Kitchen",
+                    "gives": "Gnomon"
+                },
+                {
+                    "Text": "Leave the kitchen",
+                    "Target": "EntryHall"
+                }
+            ]
+        },
+        "Stairs": {
+            "Body": "A landing on the second floor. There are two doors here.",
+            "Choices": [
+                {
+                    "Text": "Enter the Master Bedroom",
+                    "Target": "MasterBedroom"
+                },
+                {
+                    "Text": "Enter the Children's Bedroom",
+                    "Target": "ChildrensBedroom"
+                },
+                {
+                    "Text": "Go back downstairs",
+                    "Target": "EntryHall"
+                }
+            ]
+        },
+        "MasterBedroom": {
+            "Body": "A tidy and austere master bedroom.",
+            "Choices": [
+                {
+                    "Text": "Leave",
+                    "Target": "Stairs"
+                }
+            ]
+        },
+        "ChildrensBedroom": {
+            "Body": "A child's bedroom, filled with wooden toys and drawings.",
+            "Choices": [
+                {
+                    "Text": "Leave",
+                    "Target": "Stairs"
+                }
+            ]
+        },
+        "CourtyardGarden": {
+            "Body": "You are in a beautiful courtyard garden. In the center is a sundial. A heavy wooden door leads to what looks like a cellar. The main gate out of the property is rusted shut.",
+            "Choices": [
+                {
+                    "Text": "Examine the Sundial",
+                    "Target": "Sundial"
+                },
+                {
+                    "Text": "Try the Main Gate",
+                    "Target": "MainGate"
+                },
+                {
+                    "Text": "Go to the Wine Cellar",
+                    "Target": "WineCellar"
+                },
+                {
+                    "Text": "Go back to the Entry Hall",
+                    "Target": "EntryHall"
+                }
+            ]
+        },
+        "MainGate": {
+            "Body": "The gate is made of heavy iron and is rusted shut. You can't open it.",
+            "Choices": [
+                {
+                    "Text": "Go back to the garden",
+                    "Target": "CourtyardGarden"
+                }
+            ]
+        },
+        "Sundial": {
+            "Body": "The sundial stands on a stone pedestal. The gnomon, the part that casts the shadow, is missing. ",
+            "StateProperty": "sundialFixed",
+            "Body_State": "The sundial is complete! The shadow points to a loose stone on the ground, revealing the location of the key.  You now know where to look in the library.",
+            "Choices": [
+                {
+                    "Text": "Attach the Gnomon",
+                    "Target": "Sundial",
+                    "requires": "Gnomon",
+                    "removes": "Gnomon",
+                    "setsState": "sundialFixed"
+                },
+                {
+                    "Text": "Leave the sundial",
+                    "Target": "CourtyardGarden"
+                }
+            ]
+        },
+        "WineCellar": {
+            "Body": "A cool, damp wine cellar. The air is thick with the smell of earth and old wine. One wall has a section of bricks that looks newer than the others.",
+            "Choices": [
+                {
+                    "Text": "Unlock the secret passage with the ornate key ",
+                    "Target": "SecretPassage",
+                    "requires": "OrnateKey"
+                },
+                {
+                    "Text": "Go back to the garden",
+                    "Target": "CourtyardGarden"
+                }
+            ]
+        },
+        "SecretPassage": {
+            "Body": "The bricks slide away to reveal a dark, narrow passage leading out into the sunlight. You've found a way out!",
+            "Choices": [
+                {
+                    "Text": "Escape the castle",
+                    "Target": "Win"
+                }
+            ]
+        },
+        "Win": {
+            "Body": "You step out into the fresh air, free at last."
         }
     }
 }

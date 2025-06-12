@@ -5,6 +5,8 @@ class Engine {
     }
 
     constructor(firstSceneClass, storyDataUrl) {
+        this.inventory = [];
+        this.state = {};
 
         this.firstSceneClass = firstSceneClass;
         this.storyDataUrl = storyDataUrl;
